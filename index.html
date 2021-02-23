@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="authoring-tool" content="Adobe_Animate_CC">
+		<meta name = "viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>drawingBoard</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		
+<script>
+var s;
+function init(){
+mysvg = document.getElementById("drawingBoard");
+
+}
+mousedown =0;
+address =null;
+isCircle=false;
+isLine=false;
+isBlack=false;
+isBlue=false;
+isRed=false;
+currentColor ="Black";
+</script>
+ </head>
+ <body onload="init();">
+<div id="root">
+ <div id="container" >
+ <svg id="drawingBoard" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+width="800px" height="500px">
+ <g id="myGroup">
+
+<path id="drawline"  stroke="red"
+  stroke-width="20" fill="none" />
+  <path id="drawcircle"  stroke="red"
+  stroke-width="20" fill="none" />
+  <script> <![CDATA[
+var xmlns = "http://www.w3.org/2000/svg";
+  var mysvg = document.getElementById("drawingBoard");
+  
+
+     
+     
+        mysvg.addEventListener("mousemove",function(evt){
+         endX =evt.clientX;
+         endY =evt.clientY;
+		if(mousedown==1){
+		   if(isLine){
+		  var address='M ' +startX+' '+startY+' '+'L '+endX+' '+endY;
+		  drawline.setAttributeNS(null, 'stroke', currentColor);
+		  drawline.setAttribute('d',address);
+		  drawline.setAttribute('stroke-width',"5");
+		  mysvg.appendChild(drawline);
+			  
+		   }else if(isCircle){
+		   var Redius = getDistance(startX,startY,endX,endY);
+		   var arc1="a" +" "+ Redius+" "+","+" "+Redius+" "+ 0+" "+ 1+" "+","+" "+0+" "+ (Redius * 2)+" "+","+" "+0;
+		   var arc2="a" +" "+ Redius+" "+","+" "+Redius+" "+ 0+" "+ 1+" "+","+" "+0+" "+ -(Redius * 2)+" "+","+" "+0;
+		   var address="M"+startX +" "+ startY +" "+ arc1+ arc2;
+          drawcircle.setAttribute("d", address);
+          drawcircle.setAttribute("stroke", currentColor);
+          drawcircle.setAttribute("fill", 'none');
+           drawcircle.setAttribute("stroke-width", 3);
+          mysvg.appendChild(drawcircle);
+		  
+			   
+		   }
+		  }
+		  
+		
+    },false);
+	mysvg.addEventListener("mousedown",function(evt){
+        if(isLine){
+		drawline = document.createElementNS('http://www.w3.org/2000/svg',"path");
+		}else if(isCircle){
+		drawcircle = document.createElementNS('http://www.w3.org/2000/svg',"path");
+		}
+		startX =evt.clientX;
+        startY =evt.clientY;
+		mousedown =1;
+    },false);
+	mysvg.addEventListener("mouseup",function(evt){
+       
+		mousedown =0;
+		
+    },false);
+
+
+		function createCircle(){
+          isCircle=true;
+		  isLine=false;
+		}
+		function createLine(){
+          isCircle=false;
+		  isLine=true;
+		}
+		function createRed(){
+             currentColor="red";           
+		   
+		}function createBlue(){
+              currentColor="Blue"; 
+			 
+		}function createBlack(){
+        currentColor="Black";             
+			
+		}
+		function clearAll(){
+		document.getElementById("drawingBoard").innerHTML="";
+             
+			 
+		}
+		function getDistance(xA,yA,xB,yB){
+		var xDiff=xA-xB;
+		var yDiff=yA-yB;
+		return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+             
+			 
+		}
+
+]]></script>
+
+ </g>
+ </svg>
+ </div>
+ <div id="options">
+ <button class="btn" onclick="createCircle()">Circle</button>
+ <button class="btn" onclick="createLine()">Line</button>
+ <button class="btn" onclick="clearAll()">Clear All</button>
+ </div>
+ <div id="colors">
+ <button class="red" onclick="createRed()"></button>
+ <button class="blue"onclick="createBlue()"></button>
+ <button class="black" onclick="createBlack()"></button>
+ </div>
+</div>
+</body>
+</html>

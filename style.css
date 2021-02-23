@@ -1,0 +1,51 @@
+body {
+  background-color: powderblue;
+}
+#options {
+  color: blue;
+}
+.btn {
+color: #f0dede;
+border: solid 1px;
+width: 150px;
+height: 40px;
+float: left;
+text-align: center;
+margin-left: 65px;
+padding-top: 0%;
+background-color: #8e3c7a;
+font-size: 20px;
+}
+.red {
+color: #f0dede;
+border: solid 1px;
+width: 50px;
+height: 32px;
+float: left;
+text-align: center;
+margin-left: 65px;
+padding-top: 3%;
+background-color: #ec0505;
+}
+.black{
+color: #f0dede;
+border: solid 1px;
+width: 50px;
+height: 32px;
+float: left;
+text-align: center;
+margin-left: 13px;
+padding-top: 3%;
+background-color: #151414;
+}
+.blue {
+color: #f0dede;
+border: solid 1px;
+width: 50px;
+height: 32px;
+float: left;
+text-align: center;
+margin-left: 13px;
+padding-top: 3%;
+background-color: #4205ec;
+}
